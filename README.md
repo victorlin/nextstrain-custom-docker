@@ -36,8 +36,16 @@ repository's name and owner.
 Use the image with Nextstrain CLI by specifying it as `--image` in supported
 commands. `--docker` is required if it is not your default runtime. Examples:
 
-```
+```sh
 nextstrain build --docker --image=ghcr.io/victorlin/custom-docker .
 
 nextstrain shell --docker --image=ghcr.io/victorlin/custom-docker .
 ```
+
+> [!NOTE]
+> You can also build it locally if you have Docker installed. Example:
+>
+> ```sh
+> ./build --load --tag custom-local-image
+> nextstrain shell --docker --image=custom-local-image .
+> ```
