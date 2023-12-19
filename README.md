@@ -7,7 +7,10 @@ cases, however there are times when one wants to use software that is not
 included in that image. This repository demonstrates how to create your own
 image.
 
+Something similar was [requested] on the Nextstrain discussion forum.
+
 [Nextstrain's Docker image]: https://hub.docker.com/r/nextstrain/base
+[requested]: https://discussion.nextstrain.org/t/is-it-possible-to-build-a-new-docker-image-with-a-dockerfile/1391
 
 
 ## 1. Setup
