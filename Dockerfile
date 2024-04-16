@@ -1,18 +1,11 @@
 FROM nextstrain/base
 
 
-# Example 1: Add nano using APT, since nextstrain/base based on Debian.
-RUN apt-get update && apt-get install -y nano
+# Install R
+RUN apt-get update && apt-get install -y r-base
 
-
-# Example 2: Add yq by downloading the platform-specific binary to /usr/bin.
-# yq's release page provides binaries for both linux/amd64 and linux/arm64.
-# https://github.com/mikefarah/yq#install
-ARG TARGETOS
-ARG TARGETARCH
-RUN BINARY="yq_${TARGETOS}_${TARGETARCH}" && wget https://github.com/mikefarah/yq/releases/download/v4.40.5/${BINARY}.tar.gz -O - | \
-  tar xz && mv ${BINARY} /usr/bin/yq
-
+# Install ggplot2
+RUN R -e 'install.packages("ggplot2")'
 
 # Example 3: Add seaborn using pip.
 # Allow Snakemake to create subdirs in the user cache dir
