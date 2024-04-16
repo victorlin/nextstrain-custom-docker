@@ -28,8 +28,23 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - run: |
+        image_tag="ghcr.io/${{ github.repository }}:${{ github.run_id }}"
+        image_latest="ghcr.io/${{ github.repository }}:latest"
         ./build \
           --platform linux/amd64,linux/arm64 \
-          --tag "ghcr.io/${{ github.repository }}:${{ github.run_id }}" \
-          --tag "ghcr.io/${{ github.repository }}:latest" \
+          --tag "$image_tag" \
+          --tag "$image_latest" \
           --push
+
+        cat >"$GITHUB_STEP_SUMMARY" <<~~
+        Image successfully published!
+
+        Use with the --image option in Nextstrain CLI:
+
+            nextstrain build --docker --image=$image_tag .
+
+        or as an environment variable:
+
+            export NEXTSTRAIN_DOCKER_IMAGE=$image_tag
+            nextstrain build .
+        ~~
