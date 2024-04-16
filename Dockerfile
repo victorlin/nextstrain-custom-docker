@@ -17,4 +17,7 @@ RUN BINARY="yq_${TARGETOS}_${TARGETARCH}" && wget https://github.com/mikefarah/y
 
 
 # Example 3: Add seaborn using pip.
-RUN pip3 install seaborn
+# Allow Snakemake to create subdirs in the user cache dir
+# <https://github.com/nextstrain/ncov-ingest/pull/401>
+RUN pip3 install seaborn \
+ && rm -rf ~/.cache
