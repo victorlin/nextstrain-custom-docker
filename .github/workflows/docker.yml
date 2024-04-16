@@ -28,8 +28,19 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - run: |
+        image_tag="ghcr.io/${{ github.repository }}:${{ github.run_id }}"
+        image_latest="ghcr.io/${{ github.repository }}:latest"
         ./build \
           --platform linux/amd64,linux/arm64 \
-          --tag "ghcr.io/${{ github.repository }}:${{ github.run_id }}" \
-          --tag "ghcr.io/${{ github.repository }}:latest" \
+          --tag "$image_tag" \
+          --tag "$image_latest" \
           --push
+
+        echo "Use custom image:" >> "$GITHUB_STEP_SUMMARY"
+        echo "" >> "$GITHUB_STEP_SUMMARY"
+        echo "    nextstrain build --docker --image=$image_tag" >> "$GITHUB_STEP_SUMMARY"
+        echo "" >> "$GITHUB_STEP_SUMMARY"
+        echo "or" >> "$GITHUB_STEP_SUMMARY"
+        echo "" >> "$GITHUB_STEP_SUMMARY"
+        echo "    nextstrain shell --docker --image=$image_tag" >> "$GITHUB_STEP_SUMMARY"
+        echo "" >> "$GITHUB_STEP_SUMMARY"
