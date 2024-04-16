@@ -36,11 +36,15 @@ jobs:
           --tag "$image_latest" \
           --push
 
-        echo "Use custom image:" >> "$GITHUB_STEP_SUMMARY"
-        echo "" >> "$GITHUB_STEP_SUMMARY"
-        echo "    nextstrain build --docker --image=$image_tag" >> "$GITHUB_STEP_SUMMARY"
-        echo "" >> "$GITHUB_STEP_SUMMARY"
-        echo "or" >> "$GITHUB_STEP_SUMMARY"
-        echo "" >> "$GITHUB_STEP_SUMMARY"
-        echo "    nextstrain shell --docker --image=$image_tag" >> "$GITHUB_STEP_SUMMARY"
-        echo "" >> "$GITHUB_STEP_SUMMARY"
+        cat >"$GITHUB_STEP_SUMMARY" <<~~
+        Image successfully published!
+
+        Use with the --image option in Nextstrain CLI:
+
+            nextstrain build --docker --image=$image_tag .
+
+        or as an environment variable:
+
+            export NEXTSTRAIN_DOCKER_IMAGE=$image_tag
+            nextstrain build .
+        ~~
