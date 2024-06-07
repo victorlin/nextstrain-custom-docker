@@ -61,3 +61,7 @@ nextstrain shell --docker --image=ghcr.io/victorlin/custom-docker .
 > ./build --load --tag custom-local-image
 > nextstrain shell --docker --image=custom-local-image .
 > ```
+
+## References
+
+Based on work in https://github.com/nextstrain/docker-base.
