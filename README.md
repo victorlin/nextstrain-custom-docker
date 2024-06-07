@@ -1,5 +1,10 @@
 # Create a custom Docker image for Nextstrain
 
+> Update 2024-06-07: Much of this repo has been reworked into a template repo
+> [victorlin/github-actions-docker-build](https://github.com/victorlin/github-actions-docker-build)
+> with a more generalized scoping of "building and publishing a Docker image on
+> GitHub".
+
 ## Background
 
 [Nextstrain's Docker image] provides software tooling that supports most use
